@@ -1,0 +1,351 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    color: #1f1f1f;
+    
+}
+
+/* ================================================================= */
+
+#navbar button {
+    border: none !important;
+}
+
+.nav-img {
+    width: 3rem;
+    height: 3rem;
+    border: 0.15rem solid black;
+    box-shadow: 0.15rem 0.15rem black;
+    margin-right: 8px;
+}
+
+#navbar i {
+    font-size: 1.5rem;
+}
+
+.navbar-text h1 {
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+/* ========================================================= */
+
+#add .top-row {
+    width: 100%;
+}
+
+.progress {
+    border: 2px solid #000;
+    border-radius: none;
+}
+
+.progress-bar {
+    background-color: orangered !important;
+}
+
+#add h2 {
+    background: gold;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+}
+
+#add .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.main-div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    border: 3px solid black;
+    box-shadow: 5px 5px black;
+    padding: 5px;
+}
+
+.input-div img {
+    width: 40px;
+    height: 40px;
+    border: 2px solid black;
+    box-shadow: 2px 2px black;
+    margin-right: 8px;
+}
+
+.input-div input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 8px;
+    width: 180px;
+    border: 2px solid black;
+}
+
+.input-div input:focus {
+    background: #e6e6e6;
+}
+
+.add-btn {
+    margin-left: 1rem;
+    background: gold;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+}
+
+.add-btn:active {
+    box-shadow: 2px 2px black;
+    transform: translate(2px, 2px);
+}
+
+/* Week btn ========================================== >>> */
+.week-btn {
+    background: gold;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+}
+
+.week-btn:active {
+    box-shadow: 2px 2px black;
+    transform: translate(2px, 2px);
+}
+
+/*  List ========================================== >>> */
+#todo {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.todo-section {
+    width: 90%;
+    max-width: 500px;
+    background: gold;
+    padding: 15px;
+
+    border: 3px solid black;
+    box-shadow: 5px 5px black;
+
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eef0ff;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 3px solid black;
+    box-shadow: 5px 5px black;
+}
+
+#taskList li span {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+#taskList li .done {
+    margin-left: 8px;
+    padding: 6px 10px;
+    font-size: 14px;
+
+    background: gold;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+
+}
+
+#taskList li .delete {
+    margin-left: 8px;
+    padding: 6px 10px;
+    font-size: 14px;
+
+    background: rgb(255, 89, 0);
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+}
+
+#taskList li.done {
+    background: #7ae67a;
+    /* Light green background */
+}
+
+#taskList li.done span {
+    text-decoration: line-through;
+    color: #2e7d32;
+}
+
+/*  Modal ============================================ >>> */
+.modal-title {
+    font-size: 3rem;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal-img {
+    width: 8rem;
+    height: 8rem;
+    border: 0.4rem solid black;
+    box-shadow: 0.4rem 0.4rem black;
+    margin-right: 8px;
+}
+
+.reset-btn {
+    background: orangered;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+}
+
+.reset-btn:active {
+    box-shadow: 2px 2px black;
+    transform: translate(2px, 2px);
+}
+
+.save-btn {
+    background: gold;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+}
+
+.save-btn:active {
+    box-shadow: 2px 2px black;
+    transform: translate(2px, 2px);
+}
+
+#nameInputSection {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 3px solid black;
+    box-shadow: 5px 5px black;
+    padding: 5px;
+    gap: 10px;
+}
+
+#nameInputSection i {
+    background: gold;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 6px 8px;
+    border: 2px solid black;
+    box-shadow: 2px 2px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nameInputSection input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 8px;
+    width: 180px;
+    border: 2px solid black;
+}
+
+#nameInputSection input:focus {
+    background: #e6e6e6;
+}
+
+/* Week modal ============================================== */
+
+.weekly-section {
+    background: gold;
+    border: 5px solid black;
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 340px;
+    box-shadow: 4px 4px 0px black;
+}
+
+#weeklyStats {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background: #eef0ff;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 3px solid black;
+    box-shadow: 5px 5px black;
+}
+
+#weeklyStats li span {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.good-li {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+.bad-li {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+.cls-btn {
+    background: gold;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px black;
+    transition: all 0.1s;
+}
+
+.cls-btn:active {
+    box-shadow: 2px 2px black;
+    transform: translate(2px, 2px);
+}

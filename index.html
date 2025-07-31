@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2Do</title>
+    <link rel="icon" type="image/x-icon" href="https://api.dicebear.com/9.x/pixel-art/svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- =========================================================== -->
+
+</head>
+
+<body>
+    <!-- Navbar ======================================== -->
+    <section id="navbar">
+        <nav class="navbar">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#profile"><img
+                            src="https://api.dicebear.com/9.x/pixel-art/svg" class="nav-img"
+                            alt="Profile Photo"></button>
+                    <div class="navbar-text mx-3">
+                        <h1 id="greeting"></h1>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- ADd section ========================================= -->
+    <section id="add" class="px-3 py-3">
+        <div class="container">
+            <div class="main-div">
+                <div class="row top-row">
+                    <div class="col-8 d-flex justify-content-center align-items-center">
+                        <div class="progress" style="height: 20px; width: 100%;">
+                            <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <h2 id="taskCounter" class="text-center ">0/0</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-div px-3 py-3">
+                        <input type="text" id="taskInput" placeholder="Add repeating task...">
+                        <button onclick="addTask()" class="add-btn">Add Task</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Weekly Progress ============================== -->
+    <section>
+        <div class="container d-flex justify-content-center align-items-center">
+            <button type="button" class="week-btn" data-bs-toggle="modal" data-bs-target="#week">Weekly Report</button>
+        </div>
+    </section>
+
+    <!-- To do list ==================================== -->
+    <section id="todo">
+        <div class="todo-section">
+            <ul id="taskList"></ul>
+        </div>
+    </section>
+
+    <!-- Modal ========================================= -->
+    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <!-- <i class="fa-solid fa-circle-user mx-3"></i> -->
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Profile</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column align-items-center">
+                    <img src="https://api.dicebear.com/9.x/pixel-art/svg" class="modal-img my-4" alt="Profile Photo">
+                    <h1 id="modalGreeting" class="text-capitalize"></h1>
+                    <div id="nameInputSection">
+                        <i class="fa-solid fa-circle-user px-3"></i>
+                        <input type="text" id="nameInput" placeholder="Enter your name">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center border-0">
+                    <button id="resetAllBtn" class="reset-btn">Reset All Data</button>
+                    <button type="button" class="save-btn" onclick="saveName()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weekly Modal =================================== -->
+    <div class="modal fade" id="week" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Weekly Report</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section id="weekly">
+                        <div class="weekly-section">
+                            <h3 class="text-center ">WEEKLY REPORT</h3>
+                            <ul id="weeklyStats"></ul>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer d-flex justify-content-center border-0">
+                    <button type="button" class="cls-btn" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,6 +1,7 @@
+
 // --- NAME STORAGE ---
 window.onload = function () {
-    resetIfNewWeek(); // reset weekly data if Sunday
+    resetIfNewWeek(); // Reset weekly stats if Sunday
 
     const name = localStorage.getItem('userName');
     if (name) {
@@ -8,6 +9,7 @@ window.onload = function () {
         document.getElementById('modalGreeting').innerText = `Hello ,${name}!`;
         document.getElementById('nameInputSection').style.display = 'none';
     }
+
     loadTasks();
 
     const weeklyData = JSON.parse(localStorage.getItem("weeklyData")) || {};
@@ -24,26 +26,57 @@ function saveName() {
     }
 }
 
-// --- TASK STORAGE ---
-function getTodayKey() {
-    const today = new Date().toISOString().split("T")[0];
-    return `tasks-${today}`;
+// --- DATE KEY HELPERS ---
+function getTodayDateKey() {
+    return new Date().toISOString().split("T")[0]; // e.g., 2025-08-01
+}
+
+function getTodayStatusKey() {
+    return `taskStatus-${getTodayDateKey()}`;
+}
+
+// --- TASK SYSTEM ---
+function addTask() {
+    const taskInput = document.getElementById("taskInput");
+    const text = taskInput.value.trim();
+    if (!text) return;
+
+    let masterList = JSON.parse(localStorage.getItem("taskMasterList")) || [];
+    masterList.push(text);
+    localStorage.setItem("taskMasterList", JSON.stringify(masterList));
+
+    const statusKey = getTodayStatusKey();
+    let statusList = JSON.parse(localStorage.getItem(statusKey)) || [];
+    statusList.push(false); // new task, not done yet
+    localStorage.setItem(statusKey, JSON.stringify(statusList));
+
+    taskInput.value = "";
+    loadTasks();
 }
 
 function loadTasks() {
-    const key = getTodayKey();
-    const tasks = JSON.parse(localStorage.getItem(key)) || [];
+    const masterList = JSON.parse(localStorage.getItem("taskMasterList")) || [];
+    const statusKey = getTodayStatusKey();
+    let statusList = JSON.parse(localStorage.getItem(statusKey));
+
+    if (!statusList || statusList.length !== masterList.length) {
+        // Align with masterList length
+        statusList = new Array(masterList.length).fill(false);
+        localStorage.setItem(statusKey, JSON.stringify(statusList));
+    }
+
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
-    tasks.forEach((task, i) => {
+
+    masterList.forEach((text, i) => {
         const li = document.createElement("li");
-        li.className = task.done ? "done" : "";
+        li.className = statusList[i] ? "done" : "";
 
         const span = document.createElement("span");
-        span.textContent = task.text;
+        span.textContent = text;
 
         const doneBtn = document.createElement("button");
-        doneBtn.textContent = task.done ? "Undo" : "Done";
+        doneBtn.textContent = statusList[i] ? "Undo" : "Done";
         doneBtn.className = "done";
         doneBtn.onclick = () => toggleDone(i);
 
@@ -58,44 +91,37 @@ function loadTasks() {
         taskList.appendChild(li);
     });
 
-    updateProgress(tasks);
-}
-
-function addTask() {
-    const taskInput = document.getElementById("taskInput");
-    const text = taskInput.value.trim();
-    if (!text) return;
-    const key = getTodayKey();
-    const tasks = JSON.parse(localStorage.getItem(key)) || [];
-    tasks.push({ text, done: false });
-    localStorage.setItem(key, JSON.stringify(tasks));
-    taskInput.value = "";
-    loadTasks();
+    updateProgressWithMaster(masterList, statusList);
 }
 
 function toggleDone(index) {
-    const key = getTodayKey();
-    const tasks = JSON.parse(localStorage.getItem(key)) || [];
-    tasks[index].done = !tasks[index].done;
-    localStorage.setItem(key, JSON.stringify(tasks));
+    const statusKey = getTodayStatusKey();
+    let statusList = JSON.parse(localStorage.getItem(statusKey)) || [];
+    statusList[index] = !statusList[index];
+    localStorage.setItem(statusKey, JSON.stringify(statusList));
     loadTasks();
 }
 
 function deleteTask(index) {
-    const key = getTodayKey();
-    const tasks = JSON.parse(localStorage.getItem(key)) || [];
-    tasks.splice(index, 1);
-    localStorage.setItem(key, JSON.stringify(tasks));
+    let masterList = JSON.parse(localStorage.getItem("taskMasterList")) || [];
+    masterList.splice(index, 1);
+    localStorage.setItem("taskMasterList", JSON.stringify(masterList));
+
+    const statusKey = getTodayStatusKey();
+    let statusList = JSON.parse(localStorage.getItem(statusKey)) || [];
+    statusList.splice(index, 1);
+    localStorage.setItem(statusKey, JSON.stringify(statusList));
+
     loadTasks();
 }
 
-// --- Progress and Weekly Stats ---
-function updateProgress(tasks) {
+// --- PROGRESS & WEEKLY STATS ---
+function updateProgressWithMaster(masterList, statusList) {
     const taskCounter = document.getElementById("taskCounter");
     const progressBar = document.getElementById("progressBar");
 
-    const total = tasks.length;
-    const done = tasks.filter(task => task.done).length;
+    const total = masterList.length;
+    const done = statusList.filter(x => x).length;
 
     taskCounter.textContent = `${done}/${total}`;
     const percentage = total === 0 ? 0 : Math.round((done / total) * 100);
@@ -157,3 +183,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
